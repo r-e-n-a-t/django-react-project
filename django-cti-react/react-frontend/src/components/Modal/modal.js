@@ -13,6 +13,7 @@ import {
     Input,
     FormControl,
     useDisclosure,
+    createStandaloneToast,
     Button,
   } from "@chakra-ui/react";
 
@@ -23,6 +24,7 @@ import {
  */
  function callAPI(formdata) {
     console.log(formdata)
+    const toast  = createStandaloneToast()
     fetch("http://localhost:8000/api/comment/", {
       method: "POST",
       headers: {
@@ -36,41 +38,61 @@ import {
       })
       .then((response) => {
         console.log(response);
-        alert(JSON.stringify(response));
+        if (response.id) {toast({
+          title: 'Отзыв добавлен.',
+          description: 'Мы добавили Ваш отзыв на сайт.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })}
+        else {toast({
+          title: 'Отзыв не добавлен.',
+          description: 'Все поля должны быть заполненными.',
+          status: 'warning',
+          duration: 3000,
+          isClosable: true,
+        })}
+        // alert(JSON.stringify(response));
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error);        
+        toast({
+        title: 'Ошибка.',
+        description: 'Мы не смогли добавить ваш отзыв.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        })
       });
   }
 
   export default function InitialFocus() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const label = 'comment'
     return (
       <>
         <Button
               colorScheme="pink"
               variant="outline"
-              onClick= {onOpen}
-            >
+              onClick={onOpen}
+              >
               Оставить отзыв
             </Button>
         <Modal
           isOpen={isOpen}
           onClose={onClose}
-        >
+          >
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Что вы думаете о GeekBrains?</ModalHeader>
             <ModalCloseButton />
             <Formik
-      initialValues={{ comment: "" }}
-      onSubmit={(values, { setSubmitting }) => {
-        callAPI(values);
-        setSubmitting(false);
-      }}
-    >
-      {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+              initialValues={{ comment: "" }}
+              onSubmit={(values, { setSubmitting }) => {
+              callAPI(values);
+              setSubmitting(false);
+              }}
+              >
+        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
         <form onSubmit={handleSubmit}>
             <ModalBody pb={6}>
               <FormControl>
@@ -97,7 +119,8 @@ import {
               <Button 
                 colorScheme="teal"
                 disabled={isSubmitting}
-                type="submit">
+                type="submit"
+                onClick={onClose}>
                 Готово
               </Button>
               <Button onClick={onClose}>Отмена</Button>

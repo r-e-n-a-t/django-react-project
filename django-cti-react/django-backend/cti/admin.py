@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Stix
+from .models import Comment
 
-class StixAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'comment', 'createdAt')
 
-# Register your models here.
 
-admin.site.register(Stix, StixAdmin)
+admin.site.register(Comment, CommentAdmin)
 

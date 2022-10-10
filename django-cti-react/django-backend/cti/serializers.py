@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Stix
+from .models import Comment
 
 
-class StixSerializer(serializers.ModelSerializer):
+
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Stix
-        fields = ('id', 'name', 'description')
+        model = Comment
+        fields = '__all__'

@@ -20,7 +20,7 @@ export default function ConversionForm(props) {
    * @param {string} formdata data to convert
    * @param {String} label instruction used in the backend for control flow of different data types
    */
-  function callAPI(formdata, label) {
+   function callAPI(formdata, label) {
     formdata.label = label
     fetch("http://localhost:8000/backend/", {
       method: "POST",

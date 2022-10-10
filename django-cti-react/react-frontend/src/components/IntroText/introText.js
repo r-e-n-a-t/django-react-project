@@ -30,7 +30,7 @@ export default function IntroText() {
             duration={3000}
           >
             <Heading fontFamily="body" bgClip="text" size="2xl">
-              Convert CTI Formats
+              Что студенты думают о GeekBrains?
             </Heading>
           </Gradient>
         </Box>

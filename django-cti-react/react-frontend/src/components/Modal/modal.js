@@ -71,12 +71,13 @@ import {
     return (
       <>
         <Button
-              colorScheme="pink"
-              variant="outline"
-              onClick={onOpen}
-              >
-              Оставить отзыв
-            </Button>
+          // align="center"
+          colorScheme="purple"
+          variant="outline"
+          onClick={onOpen}
+          >
+          Оставить отзыв
+        </Button>
         <Modal
           isOpen={isOpen}
           onClose={onClose}
@@ -117,13 +118,18 @@ import {
   
             <ModalFooter>
               <Button 
-                colorScheme="teal"
+                colorScheme="purple"
+                m={2}
                 disabled={isSubmitting}
                 type="submit"
+                variant="outline"
                 onClick={onClose}>
                 Готово
               </Button>
-              <Button onClick={onClose}>Отмена</Button>
+              <Button 
+              onClick={onClose}
+              variant="outline">
+                Отмена</Button>
             </ModalFooter>
             </form>
         )}

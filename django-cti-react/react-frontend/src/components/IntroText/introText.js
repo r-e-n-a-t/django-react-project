@@ -29,7 +29,7 @@ export default function IntroText() {
             className="text"
             duration={3000}
           >
-            <Heading fontFamily="body" bgClip="text" size="2xl">
+            <Heading fontFamily="body" bgClip="text" size="3xl">
               Что студенты думают о GeekBrains?
             </Heading>
           </Gradient>

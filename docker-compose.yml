@@ -19,10 +19,10 @@ services:
       - "8000:8000"
     depends_on:
       - db
-  frontend:
-    build: ./django-cti-react/react-frontend
-    command: ["npm", "start"]
-    volumes:
-      - ./django-cti-react/react-frontend:/app/react-frontend
-    ports:
-      - "3000:3000"
+  # frontend:
+  #   build: ./django-cti-react/react-frontend
+  #   command: ["npm", "start"]
+  #   volumes:
+  #     - ./django-cti-react/react-frontend:/app/react-frontend
+  #   ports:
+  #     - "3000:3000"
